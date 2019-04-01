@@ -75,5 +75,8 @@ void MainWindow::radioButtonICMPScanClicked() {
 }
 
 void MainWindow::pushButtonScanButtonClicked() {
-    std::cout << "scannning" << std::endl;
+    if( !lineEditIP->text().isEmpty()) {
+        // @TODO: create threads for scanning
+    }
+    std::cout << "clicked scan button" << std::endl;
 }
