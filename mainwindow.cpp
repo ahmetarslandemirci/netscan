@@ -81,8 +81,18 @@ void MainWindow::radioButtonICMPScanClicked() {
 }
 
 void MainWindow::pushButtonScanButtonClicked() {
-    if( !lineEditIP->text().isEmpty()) {
-        // @TODO: create threads for scanning
+    QString ipRange = lineEditIP->text();
+    QRegularExpression re(QString::fromStdString(IP_REGEX));
+    QRegularExpressionMatch match = re.match(ipRange);
+
+    if( !ipRange.isEmpty()) {
+        if(match.hasMatch()) {
+            // @TODO: create threads for scanning
+
+        }
+        else {
+            std::cout << "Sorry.. this is not an IP" << std::endl;
+        }
     }
     std::cout << "clicked scan button" << std::endl;
 }
