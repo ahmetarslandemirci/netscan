@@ -10,6 +10,8 @@ public:
 
     enum ScannerType { TCP=1, UDP, ICMP };
 
+    virtual void scan() = 0;
+
 private:
     ScannerType scannerType;
     std::string ipRange;

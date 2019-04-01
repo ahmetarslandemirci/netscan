@@ -14,9 +14,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    scanner.cpp
+    scanner.cpp \
+    scannerfactory.cpp
 
 HEADERS  += mainwindow.h \
-    scanner.h
+    scanner.h \
+    scannerfactory.h
+
+
+unix {
+    SOURCES += linuxicmpscanner.cpp
+    HEADERS += linuxicmpscanner.h
+}
+win32 {
+    SOURCES += windowsicmpscanner.cpp
+    HEADERS += windowsicmpscanner.h
+}
 
 FORMS    += mainwindow.ui

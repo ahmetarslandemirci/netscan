@@ -27,8 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
     lineEditPortFirst->setValidator(new QIntValidator(1, 65535, this));
     lineEditPortLast->setValidator(new QIntValidator(1, 65535, this));
 
-    QRegExp regex("(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])");
+    QRegExp regex(QString::fromStdString(MainWindow::IP_REGEX));
     lineEditIP->setValidator(new QRegExpValidator(regex));
+
+    // @TODO add tcp and udp scanners enable radio buttons
+    ui->radioButtonTCPScan->setEnabled(false);
+    ui->radioButtonUDPScan->setEnabled(false);
+    enablePortInputs(false);
+    ui->radioButtonICMPScan->setChecked(true);
 
     // QTreeWidget item example
     QTreeWidget * tree = ui->treeWidget;
@@ -80,3 +86,5 @@ void MainWindow::pushButtonScanButtonClicked() {
     }
     std::cout << "clicked scan button" << std::endl;
 }
+
+const std::string MainWindow::IP_REGEX = "(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])";
